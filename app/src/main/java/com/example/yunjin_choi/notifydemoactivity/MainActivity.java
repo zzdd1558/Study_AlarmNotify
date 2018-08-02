@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,10 +40,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // 반드시 public 으로 와야한다.
     public void sendNotification(){
+
+
+        //소리 사운드 추가할때 사용
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle("Notify Test")
-                .setContentText("안녕하세요 Notify 테스트입니다.");
+                .setContentText("안녕하세요 Notify 테스트입니다.")
+
+                //사운드 추가시 사용 기본 default 사운드 나옴.
+                .setSound(defaultSoundUri);
+
+
 
 
 
@@ -53,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // notificationCompat.Builder에 setContentIntent메서드의 매개변수로 PendingIntent를 넣어준다.
         builder.setContentIntent(pendingIntent);
+
+
+        // 알림에 액션 추가하기
+        NotificationCompat.Action action = new NotificationCompat.Action.Builder(android.R.drawable.sym_action_chat , "OPEN" , pendingIntent).build();
+        builder.addAction(action);
 
         int notificationId = 101;
 
