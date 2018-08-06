@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // PendingIntent 객체는 인텐트를 다른 애플리케이션에 전달할 수 있다.
         // 전달받은 애플리케이션이 향후에 그 인텐트를 수행할 수 있게 해준다.
         // 알림 패널을 터치할 때 ResultActivity를 시작시키기 위해 PendingIntent를 사용하였다.
+
+        //Group으로 되어있어 PendingIntent가 builderSummary에만 되어있어도 전부 똑같이 적용 된다.
         Intent resultIntent = new Intent(this , ResultActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this , 0 , resultIntent , PendingIntent.FLAG_UPDATE_CURRENT);
 
